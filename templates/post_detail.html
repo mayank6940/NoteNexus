@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    {% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }}</title>
+    <link rel="stylesheet" href="{% static 'css/post_detail.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ post.title }}</h1>
+        {% if post.image %}
+        <img src="{{ post.image.url }}" class="post-detail-img" alt="{{ post.title }}">
+        {% endif %}
+        <p>{{ post.content }}</p>
+        <p><small>Posted on {{ post.created_at }}</small></p>
+
+        {% if images %}
+        <div class="gallery">
+            <h3>Gallery</h3>
+            <div class="gallery-row">
+                {% for image in images %}
+                <div class="gallery-column">
+                    <img src="{{ image.image.url }}" class="gallery-img" alt="Image for {{ post.title }}">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+{% endblock content %}
+</html>

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    {% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uploaded Files</title>
+    <link rel="stylesheet" href="{% static 'css/files.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Uploaded Notes</h1>
+        <form class="custom-form" method="GET" action="{% url 'view_files' %}">
+            <div class="custom-select">
+                <select name="folder">
+                    <option value="">Please select Course</option>
+                    <option value="Cyber Security">Cyber Security</option>
+                    <option value="OOPS">OOPS</option>
+                    <option value="OS">OS</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="technical_Communication">Technical Communication </option>
+                </select>
+            </div>
+            <input type="submit" value="View Files" class="views-button">
+        </form>
+
+        <div class="cards-container">
+            {% for file in files %}
+                <div class="card">
+                    <img src="{% static 'images/pdf-solid.svg' %}" alt="File Icon" class="file-icon">
+                    <span class="file-name">{{ file }}</span>
+                    {% if file %}
+                        <a href="{% url 'download_file' file %}" class="download-button">Download</a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+{% endblock content %}
+</html>

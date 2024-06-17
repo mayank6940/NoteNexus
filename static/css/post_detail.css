@@ -1,0 +1,130 @@
+/* Reset default browser styles */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global body styles */
+body {
+    font-family: 'Syne', sans-serif;
+    background-color: #1F2739;
+    color: #fff;
+}
+
+/* Container styles */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px;
+    margin-top: 90px;
+    overflow-x: hidden; /* Hide horizontal overflow to prevent default scrollbar */
+}
+
+/* Headings and text styles */
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+p {
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    line-height: 2rem;
+}
+
+small {
+    font-size: 0.8em;
+}
+
+/* Post detail image styles */
+.post-detail-img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 20px;
+}
+
+/* Gallery styles */
+.gallery {
+    margin-top: 40px;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevents wrapping of gallery items */
+    scrollbar-width: thin; /* Width of the scrollbar */
+    scrollbar-color: #fff transparent; /* Color of the scrollbar */
+    position: relative; /* Ensure relative positioning for the scroll button */
+}
+
+.gallery::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+}
+
+.gallery::-webkit-scrollbar-track {
+    background: transparent; /* Background of the scrollbar track */
+}
+
+.gallery::-webkit-scrollbar-thumb {
+    background-color: rgba(21, 145, 145, 0.5); /* Color of the scrollbar thumb */
+    border-radius: 10px; /* Rounded corners of the thumb */
+    border: transparent; /* Border around the thumb */
+}
+
+/* Gallery row and column styles */
+.gallery-row {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent items from wrapping to the next line */
+    gap: 15px;
+}
+
+.gallery-column {
+    display: inline-block; /* Make columns display inline for horizontal scrolling */
+    flex: 0 0 auto; /* Prevents columns from stretching */
+    width: calc(33.333% - 15px); /* Adjust column width as needed */
+    box-sizing: border-box;
+}
+
+.gallery-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Scroll button to indicate more content */
+.scroll-button {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: none; /* Initially hidden */
+}
+
+.gallery:hover .scroll-button {
+    display: block; /* Show scroll button on hover */
+}
+
+.scroll-button:focus {
+    outline: none; /* Remove focus outline */
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .gallery-column {
+        width: calc(50% - 15px);
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-column {
+        width: calc(100% - 15px);
+    }
+}

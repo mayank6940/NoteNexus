@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% block content %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/new_Table.css' %}">
+    <style>
+        .input-container {
+            top: 90px;
+            text-align: center;
+            padding-top: 8%;
+        }
+        .input-container label {
+            color: #fff;
+            font-weight: 300;
+            margin-right: 10px;
+        }
+        .input-container input, .input-container button {
+            padding: 5px;
+            margin-right: 10px;
+        }
+        .input-container button {
+            background-color: #FB667A;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 10px 30px;
+            border-radius: 15px;
+        }
+        .input-container .radio-container {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .input-container .radio-container label {
+            color: #fff;
+            font-weight: 300;
+        }
+
+        @media (max-width: 800px) {
+            .input-container .radio-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="input-container">
+        <form method="post" action="{% url 'new-table' %}">
+            {% csrf_token %}
+            <label for="student-id">Enter your ID pass only:</label>
+            <input type="text" id="student-id" name="student_id">
+            
+            <div class="radio-container">
+                <label><input type="radio" name="section" value="A" required> Server 1</label>
+                <label><input type="radio" name="section" value="B"> Server 2</label>
+                <label><input type="radio" name="section" value="C"> Server 3</label>
+            </div>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <h2>Attendance</h2>
+    <h2 style="color: #fff;" >If your Attendance is 0 then try to change the server.</h2>
+    {% if data %}
+    <div id="attendance-table">
+        <table class="container">
+            <thead>
+                <tr>
+                    <th><h1>Subject Name:</h1></th>
+                    <th><h1>Total Lecture:</h1></th>
+                    <th><h1>Total Attend:</h1></th>
+                    <th><h1>Percen Att:</h1></th>
+                    <th><h1>Total:</h1></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                    <tr>
+                        {% if forloop.last and row.0 == '' %}
+                            <td colspan="2"><strong>Final Attendance:</strong></td>
+                            <td>{{ row.1 }}</td>
+                            <td>{{ row.2 }}</td>
+                            <td>{{ row.3 }}</td>
+                        {% else %}
+                            <td>{{ row.0 }}</td>
+                            <td>{{ row.1 }}</td>
+                            <td>{{ row.2 }}</td>
+                            <td>{{ row.3 }}</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+</body>
+{% endblock content %}
+</html>

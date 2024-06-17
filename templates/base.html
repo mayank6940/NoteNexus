@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- ===== CSS ===== -->
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+        <title>NoteNexus</title>
+    </head>
+    <body>
+        <header class="header">
+            <a href="#" class="header__logo">NoteNexus</a>
+
+            <ion-icon name="menu-outline" class="header__toggle" id="nav-toggle"></ion-icon>
+
+            <nav class="nav" id="nav-menu">
+                <div class="nav__content bd-grid">
+
+                    <ion-icon name="close-outline" class="nav__close" id="nav-close"></ion-icon>
+    
+                    <div class="nav__perfil">
+                        <div class="nav__img">
+                            <img src="{% static 'images/pro.png' %}" alt="">
+                        </div>
+                        
+                        <div>
+                            <a href="/" class="nav__name">NoteNexus</a>
+                            <span class="nav__profesion">GNIOT Pre.</span>
+                        </div>
+                    </div>
+    
+                    <div class="nav__menu">
+                        <ul class="nav__list">
+                            <li class="nav__item"><a href="/" class="nav__link ">Home</a></li>
+                            <li class="nav__item"><a href="{% url 'new-table' %}" class="nav__link ">Attendance</a></li>
+                            <li class="nav__item"><a href="{% url  'view_files' %}" class="nav__link">Notes</a></li>
+                            <li class="nav__item"><a href="{% url  'contact' %}" class="nav__link">Contact</a></li>
+                            <li class="nav__item"><a href="{% url  'settings' %}" class="nav__link">Settings</a></li>
+                        </ul>
+                    </div>
+    
+                    <div class="nav__social">
+                        <a href="https://www.linkedin.com/in/mayank8757/" class="nav__social-icon"><ion-icon name="logo-linkedin"></ion-icon></a>
+                        <a href="https://github.com/mayank6940" class="nav__social-icon"><ion-icon name="logo-github"></ion-icon></a>
+                        <a href="https://www.instagram.com/mayankcode/" class="nav__social-icon"><ion-icon name="logo-instagram"></ion-icon></a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        {% block content %} {% endblock content %}
+
+        <!-- ===== IONICONS ===== -->
+        <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+
+        <!--===== MAIN JS =====-->
+        <script src="{% static 'main.js' %}"></script>
+    </body>
+</html>
